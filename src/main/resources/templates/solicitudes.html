@@ -1,0 +1,148 @@
+<!DOCTYPE HTML>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1" http-equiv="X-UA-Compatible" />
+    <title>Lista de Solicitudes TC</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffde59;
+            color: #343c40;
+        }
+
+        header {
+            background: #343c40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h2 {
+            margin: 0;
+        }
+
+        .container {
+            flex: 1;
+            max-width: 100%;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            margin: 20px 0;
+            border: 2px solid #343c40;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+
+        }
+
+        table th, table td {
+            border: 1px solid #343c40;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #343c40;
+            color: white;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        tr:hover {
+            background-color: #f0f0f0;
+            transition: background-color 0.3s ease;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 4px auto;
+            font-size: 16px;
+            color: white;
+            background: #343c40;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: background 0.3s;
+        }
+
+        .button:hover {
+            background: #2c3236;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            background: #343c40;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h2>Lista de Solicitudes</h2>
+    </header>
+
+    <div class="container">
+        <table>
+            <thead>
+                <tr>
+                    <th>ID Solicitud</th>
+                    <th>Nombres</th>
+                    <th>Primer Apellido</th>
+                    <th>Segundo Apellido</th>
+                    <th>Fecha Nacimiento</th>
+                    <th>Cédula Ciudadanía</th>
+                    <th>Fecha Expedición</th>
+                    <th>Número Celular</th>
+                    <th>Correo Electrónico</th>
+                    <th>Dirección</th>
+                    <th>Autoriza Tratamiento de Datos</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="solicitud : ${solicitudes}">
+                    <td th:text="${solicitud.id_solicitud}"></td>
+                    <td th:text="${solicitud.nombres}"></td>
+                    <td th:text="${solicitud.primer_apellido}"></td>
+                    <td th:text="${solicitud.segundo_apellido}"></td>
+                    <td th:text="${#dates.format(solicitud.fecha_nacimiento, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${solicitud.cedula_ciudadania}"></td>
+                    <td th:text="${#dates.format(solicitud.fecha_expedicion, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${solicitud.numero_celular}"></td>
+                    <td th:text="${solicitud.correo_electronico}"></td>
+                    <td th:text="${solicitud.direccion}"></td>
+                    <td th:text="${solicitud.autoriza_tratamiento_datos} ? 'Sí' : 'No'"></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <a class="button" th:href="@{/index}">Inicio</a>
+    </div>
+
+    <footer>
+        <img src="https://i.postimg.cc/B6DKPhxj/foother.png" alt="Footer" style="width: 80%;" />
+        <p>© 2024 Centauros Bank. Todos los derechos reservados.</p>
+    </footer>
+</body>
+</html>

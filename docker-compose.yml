@@ -1,0 +1,33 @@
+version: '3.9' 
+
+services:  
+  mysql:
+    image: mysql
+    container_name: mysql-database
+    environment:
+     MYSQL_DATABASE: jsf_jpa_centaurosbank
+     MYSQL_ROOT_PASSWORD: "123456"
+    ports:
+      - "3307:3306"
+    networks:
+      - centaurosbank-network
+    volumes:
+      - mysql-volume:/var/lib/mysql
+
+  centaurosbank-api-image:
+    image: centaurosbank-api-image
+    container_name: centaurosbank-api-container
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+     - "8080:8080"
+    networks:
+     - centaurosbank-network
+    depends_on: 
+     - mysql
+      
+networks:
+  centaurosbank-network:
+volumes:
+  mysql-volume:

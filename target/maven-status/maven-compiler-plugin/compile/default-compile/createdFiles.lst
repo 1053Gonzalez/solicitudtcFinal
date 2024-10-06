@@ -1,0 +1,5 @@
+com\centaurosbank\solicitudtc\controlador\ControladorWeb.class
+com\centaurosbank\solicitudtc\SolicitudtcApplication.class
+com\centaurosbank\solicitudtc\repositorio\Repositorio.class
+com\centaurosbank\solicitudtc\controlador\Controlador.class
+com\centaurosbank\solicitudtc\modelo\SolicitudTC.class
